@@ -1,0 +1,264 @@
+%% Template for SDP report, adapted from mlp_cw2_template, 2018. 
+
+%% Based on  LaTeX template for ICML 2017 - example_paper.tex at 
+%%  https://2017.icml.cc/Conferences/2017/StyleAuthorInstructions
+
+\documentclass{article}
+\input{mlp2018_includes}
+
+%% You probably do not need to change anything above this comment
+
+%% REPLACE the details in the following commands with your details
+\setGroupNumber{18}
+\setGroupName{My Group}
+\setProductName{My Product}
+\setDemoNumber{1}
+\setLogoFileName{figs/sdp_logo_placeholder.png}
+
+\begin{document} 
+
+\makeSDPTitle{Demo}
+
+% Previous MLP Style Title Layout working. 
+% \twocolumn[
+    % \mlptitle{\productName: SDP Demo \demoNumber}
+    % \centerline{Group \groupNumber: \groupName}
+% ]
+
+\begin{abstract} 
+Our product is a device that can be added to a cane, like a sleeve, that helps visually impaired users navigate their surroundings by using lidar technology to detect nearby objects and providing haptic feedback. We now have a clear idea of what our project is going to be. For this demo we focused more on how we will use a LiDAR for our project and also discussed some advances we have made on the software part of our project. Another part of the demo will discuss the methods we will use to test our project. Lastly, we now have an estimate of how expensive our project will be.
+\end{abstract} 
+
+
+\section{Project plan update} 
+
+Here are the goals we had for the first demo:
+\begin{itemize}
+    \item Have clear information about the device and how the mechanism works.[achieved]
+    \item Have a LiDAR move around and collect data in an environment on Webots. [achieved]
+    \item Know which LiDAR we would use for our project.[achieved]
+    \item Decide on the type of tactile feedback the device would use.
+    \item Write this report describing our project.[achieved]
+
+    
+\end{itemize}
+
+
+
+
+
+
+
+\begin{table*}
+\vskip 3mm
+\begin{center}
+\begin{small}
+
+\begin{tabular}{|l|l|}
+\hline
+Austin Pan  &  
+    \begin{tabular}{l}
+        \abovespace
+        - Managed the team by assigning tasks to team members using Trello. \\
+        - Held a class to discuss GitHub and Trello so everyone is comfortable with using it. \\
+        - Worked on this report.
+        \belowspace
+    \end{tabular}  
+\abovespace\belowspace \\
+\hline
+Ioana Buzduga & 
+     \begin{tabular}{l}
+        \abovespace
+        - Worked on this report. \\
+        - Made the Demo video.
+        \belowspace
+    \end{tabular} 
+\abovespace\belowspace \\
+\hline
+Yuanting Mao & 
+    \begin{tabular}{l}
+        \abovespace
+        - Researched different forms of tactile feedback and chose one that would best fit our project. 
+        \belowspace
+    \end{tabular} 
+\abovespace\belowspace \\
+\hline
+Samuel Reves & 
+    \begin{tabular}{l}
+        \abovespace
+        - Set up multiple testing environments in Webots to test the LiDAR including two apartment and a break room
+        \belowspace
+    \end{tabular} 
+\abovespace\belowspace \\
+\hline
+Lewis Hamilton & 
+    \begin{tabular}{l}
+        \abovespace
+        - Researched how to use a LiDAR in Webots.\\
+        - Made a WeBots simulation showing the TurtleBot moving around and outputting data from the LiDAR
+        \belowspace
+    \end{tabular} 
+\abovespace\belowspace \\
+\hline
+Shaoqing Zhao & 
+    \begin{tabular}{l}
+        \abovespace
+        - Created an outline and a script for the Demo video.
+        \belowspace
+    \end{tabular} 
+\abovespace\belowspace \\
+\hline
+Iman Abubakar & 
+     \begin{tabular}{l}
+        \abovespace
+        - Helped manage the team by making sure everyone was on track.\\
+        - Worked on this report.
+        \belowspace
+    \end{tabular} 
+\abovespace\belowspace \\
+\hline
+Wazeed Naeem & 
+    \begin{tabular}{l}
+        \abovespace
+        - Researched different types of LiDAR that we could use for our project.
+        \belowspace
+    \end{tabular} 
+\abovespace\belowspace \\
+\hline
+
+\end{tabular}
+
+\end{small}
+\caption{Individual work of team members}
+\label{tab:sample-table}
+\end{center}
+\vskip -3mm
+\end{table*}
+
+
+
+\begin{table*}[h]
+\vskip 3mm
+\begin{center}
+
+\begin{small}
+
+\begin{tabular}{|p{8.32cm}|p{8.35cm}|}
+\hline\hline
+\abovespace\belowspace
+Test & Result    \\
+\hline\hline
+\abovespace
+Can LiDAR pick up wooden box in middle of its
+view thereby outputting floats in the middle of the output list and not infs (which specify not object is
+there)?
+& The LiDAR accurately picks up float values for the box (albeit the simulated noise for the WeBots means there are deviations) in the middle of the list and outputs infs for the rest  
+ \belowspace\\
+\hline
+\abovespace
+Can the LiDAR pick up a variety of objects in the environment and can it detect more subtle objects such as gaps in the legs of the tables?
+ & LiDAR picks up a variety of depth levels
+corresponding to objects. What’s interesting is that if interpretations as correct the LiDAR picks up the gaps in the legs of tables as ‘inf’ values since those spaces are too deep for the LIDAR’s range
+\belowspace \\
+\hline
+\abovespace
+Given a cabinet that is ~2.5m away from the LiDAR in the simulation can the LiDAR to some degree of accuracy measure this distance and keep updating smaller and smaller distances as the LiDAR gets closer to the cabinet
+& It does pick up values of around 2.5 and these values do decrease as the robot/LiDAR gets closer however there are lots of variations in the numbers around it, as the demo video shows. Therefore this test shows we must research/develop algorithms that allow us to recognise objects from depth values (particularly in accounting for variations in
+depth one single object may have like test1 shows)
+ \belowspace \\
+\hline
+\abovespace
+We tested how the LiDAR would react and what data it would output to a long narrow corridor longer
+ & While the LiDAR picked up accurate depth values
+for objects left/right of the corridor, in the middle it
+did seem to struggle picking up high (>3m) readings
+and inf for the long ‘stretch’ of the corridor
+\belowspace \\
+\hline
+\abovespace
+How do different simulation environments affect runtime
+ & While the software worked well for small
+environments such as test 1,2 (~17Kb wbt files)
+there was considerable slowdown for files around
+~42 Kb while running the controller. This can be
+seen in the slow execution speed of videos 3,4.
+Optimisation of certain environments via through
+use of sharing generic nodes may be needed
+\belowspace \\
+\hline
+
+
+\end{tabular}
+
+\end{small}
+\caption{Test Results}
+\label{tab:sample-table}
+
+\end{center}
+
+\vskip -3mm
+\end{table*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{figure*}[h]
+\begin{center}
+  \includegraphics[width=1\textwidth,height=10cm]{trello.png}
+  \caption{Screenshot of Trello board}
+   \end{center}
+\end{figure*}
+We used Trello to assign tasks to each member of the team and GitHub for integrating Lewis’s and Samuel’s code to have a Webots simulation to test the LiDAR in an environment. Table 1 shows the individual work the team members have done for the demo and Figure 1 is a screenshot of the Trello board we are using to distribute work. Other than the work mentioned on Table 1, the group has met with Ryan Bowler on January 26th and Garry Ellard on January 27th to make modifications to our project.
+
+After meeting with Ryan and doing more research, our group changed the project from a glove to a cane sleeve - a device which will be put over a cane's handle that will provide haptic feedback utilizing a mounted LiDAR's distance data. The cane sleeve will detect objects above the waist, because the cane already covers the lower part. 
+
+We have not used our budget this week other than meeting with Garry on Wednesday because we were finalizing the technicalities of the project.
+
+
+\section{Technical details}
+
+The current implementation that we have in place for the first demo demonstrates our ability to utilize a LiDAR in simulation. As of now, to show that our project is feasible, we are establishing a solid foundation for testing both software and hardware. We are using a LiDAR as the main sensor in our product as it works well in low light conditions and helps us avoid computer vision algorithms. We considered echolocation/sonar or cameras but decided that those sensors incorporated much more software and hardware bandwidth than we were willing to spend.
+\subsection{ Hardware}
+Due to the situation with distanced learning, haven't built anything yet. We have, however, begun to plan out initial hardware design choices that we would hopefully be able to work with. In terms of what we have planned so far, we have decided to work with the LDS-01 LiDAR found on the turtlebots. We have also decided on using vibration as a form of tactile feedback though we haven't decided on a specific motor to use.
+2.2 User Interface (Optional)
+
+\subsection{ Software}
+Currently, we have set up a LiDAR in Webots simulation and gotten it to output distance data. In addition, we have set up multiple test environments in simulation to test our product for the future. With this, the foundation for our simulations has been solidified and testing code changes in the future has been simplified. In addition, because we can simulate the core portions of our product, it will hopefully be easily translated to an in-person product for testing.
+
+
+\section{Evaluation}
+
+\subsection{3.1 Testing Methods}
+
+Samuel created different worlds where the LiDAR will be tested. The LiDAR was tested on the following worlds: apartament, 
+
+\section{4. Budget}
+This section details the budget for the estimated total budget of our system. The budget is split into two categories:  Monetary and Technician Time. 
+
+\subsection{4.1 Monetary}
+After meeting with Garry on Wednesday, our group decided that we will need: 
+A LiDAR in the Webots simulation environment that will cost around 130 pounds ( 179 dollars)  that will connect to the Turtlebot  already provided in Appleton Tower. For future demo videos Gary reckons that we would drive the turtlebot around the lab remotely, effectively acting like a proof of concept to our idea of a LiDAR attached to the middle of the cane  [1] [2] .  The budget for the LiDAR needs to be approved by Garry. 
+A haptic device to test different feels for the technicians. Garry suggested that we should research on our own and then bring up with the technicians. The group is yet to decide on a  suitable device, but we estimate an additional 50 pounds. 
+A raspberry pi that outputs to LEDs with different strengths rather than haptic feedback because haptic feedback is harder to demonstrate in videos. 
+
+The following spreadsheet will show the project budget of everything we used for our system, including the ones already provided by the university. The budget will be updated weekly. 
+
+
+\subsection{4.2 Technician Time }
+The group decided to use 1 hour per week to meet with the technician. The meetings will be scheduled prior that week. 
+
+%% Include any references in a bibliography
+
+\bibliography{example-refs}
+
+\end{document} 
+
